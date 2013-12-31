@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nueva inscripcion</title>
+        <script src="jquery-1.10.2.min.js"></script>
+        <script src="jquery.form-validator.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("#form-inscrip").submit(function() {
+
+                })
+            });
+        </script>
+    </head>
+    <body>
+
+        <div class="inscripcion" >
+            <form id="form-inscrip" name="nueva-inscripcion" action="save.php" method="post">
+                <span>Apellido: </span><input type="text" name="apellido" data-validation="required"><br/>
+                <span>Nombre: </span><input type="text" name="nombre" data-validation="required"><br/>
+                <span>Email: </span><input type="text" name="email" data-validation="required,email"><br/>
+                <span>Tipo de Documento: </span>
+                <select name="tipoDoc" data-validation="required">
+                    <option value="1">DNI</option>
+                    <option value="2">LC</option>
+                    <option value="3">LE</option>
+                    <option value="4">Pasaporte</option>
+                </select>
+                <span>Numero Documento: </span><input type="text" name="numeroDoc" data-validation="required,number"><br/>
+
+                <span>Pais de Nacimiento:</span>
+                <select name="paisNac">
+                    <option value="1" selected="">Argentina</option>
+
+                    <option value="2">Armenia</option>
+
+                    <option value="3">Australia</option>
+
+                    <option value="4">Austria</option>
+
+                    <option value="7">Bélgica</option>
+
+                    <option value="5">Bolivia</option>
+
+                    <option value="6">Brasil</option>
+
+                    <option value="8">Canadá</option>
+
+                    <option value="12">Colombia</option>
+
+                    <option value="13">Costa Rica</option>
+
+                    <option value="14">Croacia</option>
+
+                    <option value="15">Cuba</option>
+
+                    <option value="9">Checoslovaquia</option>
+
+                    <option value="10">Chile</option>
+
+                    <option value="11">China</option>
+
+                    <option value="16">Dinamarca</option>
+
+                    <option value="17">Ecuador</option>
+
+                    <option value="18">El Salvador</option>
+
+                    <option value="19">España</option>
+
+                    <option value="20">Estados Unidos</option>
+
+                    <option value="21">Finlandia</option>
+
+                    <option value="22">Francia</option>
+
+                    <option value="23">Grecia</option>
+
+                    <option value="24">Guatemala</option>
+
+                    <option value="25">Haití</option>
+
+                    <option value="26">Holanda</option>
+
+                    <option value="27">Honduras</option>
+
+                    <option value="28">Hungría</option>
+
+                    <option value="29">Irlanda</option>
+
+                    <option value="30">Islandia</option>
+
+                    <option value="31">Israel</option>
+
+                    <option value="32">Italia</option>
+
+                    <option value="33">Jamaica</option>
+
+                    <option value="34">Japón</option>
+
+                    <option value="35">México</option>
+
+                    <option value="36">Nicaragua</option>
+
+                    <option value="37">Noruega</option>
+
+                    <option value="38">Nueva Zelandia</option>
+
+                    <option value="39">Pakistán</option>
+
+                    <option value="40">Panamá</option>
+
+                    <option value="41">Paraguay</option>
+
+                    <option value="42">Perú</option>
+
+                    <option value="43">Polonia</option>
+
+                    <option value="44">Portugal</option>
+
+                    <option value="45">Puerto Rico</option>
+
+                    <option value="46">Reino Unido</option>
+
+                    <option value="47">República Checa</option>
+
+                    <option value="48">República Dominicana</option>
+
+                    <option value="49">Rumania</option>
+
+                    <option value="50">Rusia</option>
+
+                    <option value="51">Siria</option>
+
+                    <option value="52">Suecia</option>
+
+                    <option value="53">Suiza</option>
+
+                    <option value="54">Taiwan</option>
+
+                    <option value="55">Ucrania</option>
+
+                    <option value="56">Uruguay</option>
+
+                    <option value="57">Venezuela</option>
+
+                    <option value="58">Yugoslavia</option>
+                </select>
+
+                <span>Profesion: </span>
+                <select name="profesion">
+                    <option value="9">Asistente de endoscopía </option>
+
+                    <option value="4">Asistente Social </option>
+
+                    <option value="2">Bioquímico </option>
+
+                    <option value="6">Dietista </option>
+
+                    <option value="3">Educador Terciario </option>
+
+                    <option value="1" selected="">Médico </option>
+
+                    <option value="8">Nutricionista </option>
+
+                    <option value="5">Psicólogo </option>
+
+                    <option value="7">Sociólogo </option>
+                </select>
+
+                <span>Especialidad: </span><input type="text" name="especialidad" data-validation="required"><br/>
+                <span>Pais de Residencia:</span>
+                <select name="paisRes">
+                    <option value="1" selected="">Argentina</option>
+
+                    <option value="2">Armenia</option>
+
+                    <option value="3">Australia</option>
+
+                    <option value="4">Austria</option>
+
+                    <option value="7">Bélgica</option>
+
+                    <option value="5">Bolivia</option>
+
+                    <option value="6">Brasil</option>
+
+                    <option value="8">Canadá</option>
+
+                    <option value="12">Colombia</option>
+
+                    <option value="13">Costa Rica</option>
+
+                    <option value="14">Croacia</option>
+
+                    <option value="15">Cuba</option>
+
+                    <option value="9">Checoslovaquia</option>
+
+                    <option value="10">Chile</option>
+
+                    <option value="11">China</option>
+
+                    <option value="16">Dinamarca</option>
+
+                    <option value="17">Ecuador</option>
+
+                    <option value="18">El Salvador</option>
+
+                    <option value="19">España</option>
+
+                    <option value="20">Estados Unidos</option>
+
+                    <option value="21">Finlandia</option>
+
+                    <option value="22">Francia</option>
+
+                    <option value="23">Grecia</option>
+
+                    <option value="24">Guatemala</option>
+
+                    <option value="25">Haití</option>
+
+                    <option value="26">Holanda</option>
+
+                    <option value="27">Honduras</option>
+
+                    <option value="28">Hungría</option>
+
+                    <option value="29">Irlanda</option>
+
+                    <option value="30">Islandia</option>
+
+                    <option value="31">Israel</option>
+
+                    <option value="32">Italia</option>
+
+                    <option value="33">Jamaica</option>
+
+                    <option value="34">Japón</option>
+
+                    <option value="35">México</option>
+
+                    <option value="36">Nicaragua</option>
+
+                    <option value="37">Noruega</option>
+
+                    <option value="38">Nueva Zelandia</option>
+
+                    <option value="39">Pakistán</option>
+
+                    <option value="40">Panamá</option>
+
+                    <option value="41">Paraguay</option>
+
+                    <option value="42">Perú</option>
+
+                    <option value="43">Polonia</option>
+
+                    <option value="44">Portugal</option>
+
+                    <option value="45">Puerto Rico</option>
+
+                    <option value="46">Reino Unido</option>
+
+                    <option value="47">República Checa</option>
+
+                    <option value="48">República Dominicana</option>
+
+                    <option value="49">Rumania</option>
+
+                    <option value="50">Rusia</option>
+
+                    <option value="51">Siria</option>
+
+                    <option value="52">Suecia</option>
+
+                    <option value="53">Suiza</option>
+
+                    <option value="54">Taiwan</option>
+
+                    <option value="55">Ucrania</option>
+
+                    <option value="56">Uruguay</option>
+
+                    <option value="57">Venezuela</option>
+
+                    <option value="58">Yugoslavia</option>
+                </select>
+                <span>Provincia: </span><input type="text" name="provincia" data-validation="required"><br/>
+                <span>Domicilio: </span><input type="text" name="domicilio" data-validation="required"><br/>
+                <span>Codigo Postal: </span><input type="text" name="codigoPostal" data-validation="required"><br/>
+
+                <span>Esta Bedado: </span>
+                <select>
+                    <option value="-">Seleccione uno</option>
+                    <option value="0">Si</option>
+                    <option value="1">No</option>
+                </select>
+
+                <input type="submit" value="Guardar"/>
+            </form>
+
+        </div>
+    </body>
+</html>
