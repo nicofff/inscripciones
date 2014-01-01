@@ -7,7 +7,7 @@ class Inscripto {
         $this->nombre = $data["nombre"];
         $this->email = $data["email"];
         $this->tipoDoc = $data["tipoDoc"];
-        $this->numerDoc = $data["numeroDoc"];
+        $this->numeroDoc = $data["numeroDoc"];
         $this->paisNac = $data["paisNac"];
         $this->profesion = $data["profesion"];
         $this->especialidad= $data["especialidad"];
@@ -15,13 +15,18 @@ class Inscripto {
         $this->provincia = $data["provincia"];
         $this->domicilio = $data["domicilio"];
         $this->codigoPostal = $data["codigoPostal"];
+        if ($data["esBecado"]==1){
+            $this->laboratorio = $data["laboratorio"];
+        }else{
+            $this->laboratorio = 0;
+        }
 
         return $this;
     }
 
     public function estaRegistrado(){
         include "dbConn.php"; # me da el obj $MYSQLI
-        $query= "SELECT count(*) as total from Inscriptos where TipoDoc = ". $this->tipoDoc ." AND NumeroDoc = ".$this->numerDoc;
+        $query= "SELECT count(*) as total from Inscriptos where TipoDoc = ". $this->tipoDoc ." AND NumeroDoc = ".$this->numeroDoc;
         if ($result = $MYSQLI->query($query)){
             $resObj = $result->fetch_object();
             $total=$resObj->total;
@@ -73,21 +78,23 @@ class Inscripto {
 
     public function save(){
         include "dbConn.php"; # me da el obj $MYSQLI
-        $query= "INSERT INTO Inscriptos (Apellido,Nombre,TipoDoc,NumeroDoc,PaisNac,Profesion,Especialidad,PaisRes,Provincia,Domicilio,CodigoPostal,Email) ";
-        $query.= "VALUES ('".$this->apellido."','".$this->nombre."',".$this->tipoDoc.",".$this->numerDoc.",".$this->paisNac.",".$this->profesion.",'".$this->especialidad;
-        $query .= "',".$this->paisRes.",'".$this->provincia."','".$this->domicilio."','".$this->codigoPostal."','".$this->email."')";
-        echo $query;
+        $query= "INSERT INTO Inscriptos (Apellido,Nombre,TipoDoc,NumeroDoc,PaisNac,Profesion,Especialidad,PaisRes,Provincia,Domicilio,CodigoPostal,Email,Laboratorio) ";
+        $query.= "VALUES ('".$this->apellido."','".$this->nombre."',".$this->tipoDoc.",".$this->numeroDoc.",".$this->paisNac.",".$this->profesion.",'".$this->especialidad;
+        $query .= "',".$this->paisRes.",'".$this->provincia."','".$this->domicilio."','".$this->codigoPostal."','".$this->email."',".$this->laboratorio.")";
         $MYSQLI->query($query);
         if (mysqli_error($MYSQLI)){
+            print_r(mysqli_error($MYSQLI));
+            die();
             return false;
         }else{
+            $MYSQLI->close();
             return true;
         }
     }
     
     public static function getAll() {
         include "dbConn.php"; # me da el obj $MYSQLI
-        $query= "SELECT I.Apellido,I.Nombre,I.TipoDoc,I.NumeroDoc,P1.Nombre as PaisNac,PR.Nombre as Profesion,I.Especialidad,P2.Nombre as PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email ";
+        $query= "SELECT I.ID,I.Apellido,I.Nombre,I.TipoDoc,I.NumeroDoc,P1.Nombre as PaisNac,PR.Nombre as Profesion,I.Especialidad,P2.Nombre as PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email ";
         $query.= "from Inscriptos I, Paises P1 , Paises P2, Profesion PR ";
         $query.= "where P1.id = I.PaisNac AND P2.id = I.paisRes AND I.Profesion = PR.ID";
         if ($result = $MYSQLI->query($query)){
@@ -95,10 +102,40 @@ class Inscripto {
             while (($resObj = $result->fetch_object())!= NULL){
                 $json[]=$resObj;
             }
+            $MYSQLI->close();
             return json_encode($json);
         } else {
             die();
         }
     }
-
+    
+    public static function get($id){
+        include "dbConn.php"; # me da el obj $MYSQLI
+        $query= "SELECT I.Apellido,I.Nombre,I.TipoDoc,I.NumeroDoc,P1.Nombre as PaisNac,PR.Nombre as Profesion,I.Especialidad,P2.Nombre as PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email ";
+        $query.= "from Inscriptos I, Paises P1 , Paises P2, Profesion PR ";
+        $query.= "where P1.id = I.PaisNac AND P2.id = I.paisRes AND I.Profesion = PR.ID and I.ID =".$id;
+        if ($result = $MYSQLI->query($query)){
+            $json = array();
+            $json[] = $result->fetch_object();
+            $MYSQLI->close();
+            return json_encode($json);
+        }else {
+            die();
+        }
+    }
+    
+    public static function delete($id){
+        include "dbConn.php"; # me da el obj $MYSQLI
+        if (!filter_var($id,FILTER_VALIDATE_INT)){
+            return false;
+        }
+        $query="Delete from Inscriptos where ID=".$id;
+        $MYSQLI->query($query);
+        if (mysqli_error($MYSQLI)){
+            return false;
+        }else{
+            $MYSQLI->close();
+            return true;
+        }
+    }
 }

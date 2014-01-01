@@ -8,11 +8,7 @@ var inscApp = angular.module('inscApp', [
 inscApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/borrar/:phoneId', {
-        templateUrl: 'partials/borrar.html',
-        controller: 'PhoneListCtrl'
-      }).
-      when('/editar/:phoneId', {
+      when('/editar/:inscId', {
         templateUrl: 'partials/editar.html',
         controller: 'PhoneDetailCtrl'
       }).
