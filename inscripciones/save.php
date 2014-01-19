@@ -1,6 +1,7 @@
 <?php
 include "model/Inscripto.php";
-$data = $_POST;
+$postdata = file_get_contents("php://input");
+$data = json_decode($postdata,true);
 
 $inscripto = new Inscripto($data);
 if (!$inscripto->validate()){

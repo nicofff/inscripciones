@@ -1,19 +1,13 @@
-.nobecado {
-    display: none;
+input.ng-invalid.ng-dirty {
+  border: 1px solid red;
 }
-
-.becado {
-    display: none;
+input.ng-valid.ng-dirty{
+  border: 1px solid green;
 }
-
 .search input{
     width:100%;
 }
 
 .inscEdit {
-    display:none;
-}
-
-.form-error {
     display:none;
 }

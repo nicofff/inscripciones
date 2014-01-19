@@ -4,7 +4,7 @@ inscServices.factory('Inscriptos', ['$resource',
   function($resource){
     return $resource('rest/inscriptos.php', {}, {
       query: {method:'GET', isArray:true},
-      borrar: {method:'DELETE'} 
+      borrar: {method:'DELETE'},
     });
   }]);
   
@@ -33,5 +33,19 @@ inscServices.factory('Laboratorios', ['$resource',
   function($resource){
     return $resource('json/tiposDoc.json', {}, {
       query: {method:'GET', isArray:true}
+    });
+  }]);
+  
+  inscServices.factory('Provincias', ['$resource',
+  function($resource){
+    return $resource('json/provincias.json', {}, {
+      query: {method:'GET', isArray:true}
+    });
+  }]);
+  
+  inscServices.factory('NuevoSave', ['$resource',
+  function($resource){
+    return $resource('save.php', {}, {
+      save: {method:'POST'}
     });
   }]);

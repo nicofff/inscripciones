@@ -2,92 +2,66 @@
 <html ng-app="inscApp">
     <head>
         <title>Nueva inscripcion</title>
-        <script src="js/jquery-1.10.2.min.js"></script>
-        <script src="js/jquery.form-validator.min.js"></script>
         <script src="angular/angular.min.js"></script>
-        <script src="js/xeditable.min.js"></script>
-
         <script src="angular/angular-route.min.js"></script>
         <script src="angular/angular-resource.js"></script>
         <script src="js/controller.js"></script>
         <script src="js/services.js"></script>
         <script src="js/app.js"></script>
         <link rel="stylesheet" href="styles.css"/>
-        <script>
-            $(document).ready(function() {
-                $("#becado-select").change(function() {
-                    if ($(this).val() == 0) {
-                        $(".becado").hide();
-                        $(".nobecado").show();
-                    } else if ($(this).val() == 1) {
-                        $(".nobecado").hide();
-                        $(".becado").show();
-                    } else {
-                        $(".becado").hide();
-                        $(".nobecado").hide();
-                    }
-                });
-
-                $("#form-inscrip").submit(function() {
-                    if (($("#becado-select").val() == 0) && ($("#aceptoNoBecado").attr("checked") == 0)) {
-                        alert("Acepte el monto");
-                    }
-                });
-                $.validate({
-                    validateOnBlur: true,
-                    showHelpOnFocus: false,
-                    addSuggestions: false
-                });
-            });
-        </script>
     </head>
-    <body ng-controller="nuevoCtrl">
+    <body>
 
         <div class="inscripcion" >
-            <form id="form-inscrip" name="nueva-inscripcion" action="save.php" method="post">
-                <span>Apellido: </span><input type="text" name="apellido" data-validation="required"><br/>
-                <span>Nombre: </span><input type="text" name="nombre" data-validation="required"><br/>
-                <span>Email: </span><input type="text" name="email" data-validation="email"><br/>
+            <form novalidate ng-controller="nuevoCtrl" name="nuevoInsc" ng-submit="submitForm()">
+                <span>Apellido: </span><input type="text" ng-model="nuevo.apellido" required/><br/>
+                <span>Nombre: </span><input type="text" ng-model="nuevo.nombre" required/><br/>
+                <span>Email: </span><input type="email" ng-model="nuevo.email" required/><br/>
                 <span>Tipo de Documento: </span>
-                <select name="tipoDoc" data-validation="required">
+                <select ng-model="nuevo.tipoDoc">
                     <option ng-repeat="tipoDoc in tiposDoc" value="{{tipoDoc.value}}">{{tipoDoc.label}}</option>
                 </select>
-                <span>Numero Documento: </span><input type="text" name="numeroDoc" data-validation="number"><br/>
+                <span>Numero Documento: </span><input type="text" ng-model="nuevo.numeroDoc" ng-pattern="/[0-9]{7,9}/"/><br/>
                 <span>Pais de Nacimiento:</span>
-                <select name="paisNac">
+                <select ng-model="nuevo.paisNac">
                     <option ng-repeat="pais in paisesNac" value="{{pais.value}}">{{pais.label}}</option>
                 </select>
 
                 <span>Profesion: </span>
-                <select name="profesion">
+                <select ng-model="nuevo.profesion">
                     <option ng-repeat="prefesion in profesiones" value="{{prefesion.value}}">{{prefesion.label}}</option>
                 </select>
-                <span>Especialidad: </span><input type="text" name="especialidad" data-validation="required"><br/>
+                <span>Especialidad: </span><input type="text" ng-model="nuevo.especialidad" required/><br/>
                 <span>Pais de Residencia:</span>
-                <select name="paisRes">
+                <select ng-model="nuevo.paisRes" ng-change="checkPais()">
                     <option ng-repeat="pais in paisesRes" value="{{pais.value}}">{{pais.label}}</option>
                 </select>
-                <span>Provincia: </span><input type="text" name="provincia" data-validation="required"><br/>
-                <span>Domicilio: </span><input type="text" name="domicilio" data-validation="required"><br/>
-                <span>Codigo Postal: </span><input type="text" name="codigoPostal" data-validation="required"><br/>
+                <div ng-show="nuevo.paisRes == '1'">
+                    <span>Provincia: </span>
+                    <select ng-model="nuevo.provincia">
+                        <option ng-repeat="provincia in provincias" value="{{provincia.value}}">{{provincia.label}}</option>
+                    </select>
+                </div>
+                <div ng-hide="nuevo.paisRes == '1'">
+                    <span>Provincia: </span><input type="text" ng-model="nuevo.provincia" required/><br/>
+                </div>
+                <span>Domicilio: </span><input type="text" ng-model="nuevo.domicilio" required/><br/>
+                <span>Codigo Postal: </span><input type="text" ng-model="nuevo.codigoPostal" required/><br/>
 
                 <span>Esta Becado: </span>
-                <select name="esBecado" id="becado-select">
-                    <option value="-">Seleccione uno</option>
-                    <option value="0">No</option>
-                    <option value="1">Si</option>
-                </select>
-                <div class="nobecado">
+                <input type="radio" ng-model="becadoCheck" value="0"/> No <br/>
+                <input type="radio" ng-model="becadoCheck" value="1"/> Si <br/>
+                <div ng-show="becadoCheck==0">
                     <p>Ud debera abonar $50 a la hora de acreditarse</p>
-                    <input type="checkbox" id="aceptoNoBecado"/> Comprendo y acepto
+                    <input type="checkbox" ng-model="becadoAcepto" ng-required="becadoCheck=='0'"/> Comprendo y acepto
                 </div>
-                <div class="becado">
+                <div ng-show="becadoCheck==1">
                     <span>Laboratorio que concede la beca</span>
-                    <select name="laboratorio">
+                    <select ng-model="nuevo.laboratorio">
                         <option ng-repeat="labo in laboratorios" value="{{labo.value}}">{{labo.label}}</option>
                     </select>
                 </div>
-                <input type="submit" value="Guardar"/>
+                <input ng-disabled="nuevoInsc.$invalid || !becadoCheck" type="submit" value="Guardar"/>
             </form>
 
         </div>
