@@ -1,7 +1,7 @@
 <?php
 
-$DB_USER= "root";
-$DB_PASS = "a80cmdelpiso";
+$DB_USER= "inscripciones";
+$DB_PASS = "8uExIUbpGd9x";
 $DB_NAME =  "inscripciones";
 $DB_SERVER= "localhost";
 
