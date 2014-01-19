@@ -30,6 +30,7 @@ class Inscripto {
         if ($result = $MYSQLI->query($query)){
             $resObj = $result->fetch_object();
             $total=$resObj->total;
+            $MYSQLI->close();
             if ($total == 0 ){
                 return false;
             }
@@ -88,15 +89,44 @@ class Inscripto {
             return false;
         }else{
             $MYSQLI->close();
+        }
+        mail($this->email, "Confirmacion Subscripcion", 
+                "Para ver los datos de su sobscripcion, ingrese <a href='http://www.nicolasfar.com.ar/wewow/UsuarioRegistrado.php?tipoDoc=" . $this->tipoDoc . "&NumeroDoc=" . $this->numeroDoc."'>Aqui</a>");//TODO: Poner el link correcto
+    }
+    
+    public function update($id){
+        include "dbConn.php"; # me da el obj $MYSQLI
+        $query= "UPDATE Inscriptos SET ";//(Apellido,Nombre,TipoDoc,NumeroDoc,PaisNac,Profesion,Especialidad,PaisRes,Provincia,Domicilio,CodigoPostal,Email,Laboratorio) ";
+        $query.= "Apellido = '".$this->apellido."' ,";
+        $query.= "Nombre = '".$this->nombre."' ,";
+        $query.= "TipoDoc = '".$this->tipoDoc."' ,";
+        $query.= "NumeroDoc = ".$this->numeroDoc." ,";
+        $query.= "PaisNac = ".$this->paisNac." ,";
+        $query.= "Profesion = ".$this->profesion." ,";
+        $query.= "Especialidad = '".$this->especialidad."' ,";
+        $query.= "PaisRes = ".$this->paisRes." ,";
+        $query.= "Provincia = '".$this->provincia."' ,";
+        $query.= "Domicilio = '".$this->domicilio."' ,";
+        $query.= "CodigoPostal = '".$this->codigoPostal."' ,";
+        $query.= "Email = '".$this->email."' ,";
+        $query.= "Laboratorio = ".$this->laboratorio;
+        $query.= " WHERE ID=".$id;
+        $MYSQLI->query($query);
+        if (mysqli_error($MYSQLI)){
+            print_r(mysqli_error($MYSQLI));
+            die();
+            return false;
+        }else{
+            $MYSQLI->close();
             return true;
         }
     }
     
     public static function getAll() {
         include "dbConn.php"; # me da el obj $MYSQLI
-        $query= "SELECT I.ID,I.Apellido,I.Nombre,I.TipoDoc,I.NumeroDoc,P1.Nombre as PaisNac,PR.Nombre as Profesion,I.Especialidad,P2.Nombre as PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email ";
-        $query.= "from Inscriptos I, Paises P1 , Paises P2, Profesion PR ";
-        $query.= "where P1.id = I.PaisNac AND P2.id = I.paisRes AND I.Profesion = PR.ID";
+        $query= "SELECT I.ID, I.Apellido,I.Nombre,I.TipoDoc as CodDoc, T.Nombre as TipoDoc,I.NumeroDoc,P1.Nombre as PaisNac,PR.Nombre as Profesion,I.Especialidad,P2.Nombre as PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email, L.Nombre as Laboratorio ";
+        $query.= "from Inscriptos I, Paises P1 , Paises P2, Profesion PR, TipoDoc T, Laboratorios L ";
+        $query.= "where P1.id = I.PaisNac AND P2.id = I.paisRes AND I.Profesion = PR.ID and I.TipoDoc = T.ID and L.ID = I.Laboratorio";
         if ($result = $MYSQLI->query($query)){
             $json = array();
             while (($resObj = $result->fetch_object())!= NULL){
@@ -111,14 +141,17 @@ class Inscripto {
     
     public static function get($id){
         include "dbConn.php"; # me da el obj $MYSQLI
-        $query= "SELECT I.Apellido,I.Nombre,I.TipoDoc,I.NumeroDoc,P1.Nombre as PaisNac,PR.Nombre as Profesion,I.Especialidad,P2.Nombre as PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email ";
-        $query.= "from Inscriptos I, Paises P1 , Paises P2, Profesion PR ";
-        $query.= "where P1.id = I.PaisNac AND P2.id = I.paisRes AND I.Profesion = PR.ID and I.ID =".$id;
+        if (!filter_var($id,FILTER_VALIDATE_INT)){
+            return false;
+        }
+        $query= "SELECT I.ID,I.Apellido,I.Nombre,I.TipoDoc,I.NumeroDoc,I.PaisNac,I.Profesion,I.Especialidad,I.PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email, I.Laboratorio ";
+        $query.= "from Inscriptos I ";
+        $query.= "where I.ID=".$id;
         if ($result = $MYSQLI->query($query)){
-            $json = array();
-            $json[] = $result->fetch_object();
+            $result = $result->fetch_object();
             $MYSQLI->close();
-            return json_encode($json);
+            //return json_encode($json);
+            return $result;
         }else {
             die();
         }
@@ -136,6 +169,28 @@ class Inscripto {
         }else{
             $MYSQLI->close();
             return true;
+        }
+    }
+    
+    public static function exportAll() {
+        header("Content-type: text/csv; charset=UTF-8");
+        header('Content-Disposition: attachment; filename=Export.csv');
+        echo "'ID','Apellido','Nombre','Tipo Documento','Numero Documento','Pais Nacimiento','Profesion','Especialidad','Pais Residencia','Provincia','Domicilio','Codigo Postal','Email','Laboratorio'\r\n";
+        include "dbConn.php"; # me da el obj $MYSQLI
+        $query= "SELECT I.ID, I.Apellido,I.Nombre, T.Nombre as TipoDoc,I.NumeroDoc,P1.Nombre as PaisNac,PR.Nombre as Profesion,I.Especialidad,P2.Nombre as PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email, L.Nombre as Laboratorio ";
+        $query.= "from Inscriptos I, Paises P1 , Paises P2, Profesion PR, TipoDoc T, Laboratorios L ";
+        $query.= "where P1.id = I.PaisNac AND P2.id = I.paisRes AND I.Profesion = PR.ID and I.TipoDoc = T.ID and L.ID = I.Laboratorio";
+        if ($result = $MYSQLI->query($query)){
+            while (($res = $result->fetch_row())!= NULL){
+                foreach ($res as $field){
+                    echo "'".$field."',";
+                }
+                echo "\r\n";
+            }
+            $MYSQLI->close();
+            return json_encode($json);
+        } else {
+            die();
         }
     }
 }

@@ -10,21 +10,28 @@ inscServices.factory('Inscriptos', ['$resource',
   
 inscServices.factory('Paises', ['$resource',
   function($resource){
-    return $resource('rest/paises.php', {}, {
+    return $resource('json/paises.json', {}, {
       query: {method:'GET', isArray:true}
     });
   }]);
   
 inscServices.factory('Profesiones', ['$resource',
   function($resource){
-    return $resource('rest/profesiones.php', {}, {
+    return $resource('json/profesiones.json', {}, {
       query: {method:'GET', isArray:true}
     });
   }]);
   
 inscServices.factory('Laboratorios', ['$resource',
   function($resource){
-    return $resource('rest/profesiones.php', {}, {
+    return $resource('json/laboratorios.json', {}, {
+      query: {method:'GET', isArray:true}
+    });
+  }]);
+  
+ inscServices.factory('TiposDoc', ['$resource',
+  function($resource){
+    return $resource('json/tiposDoc.json', {}, {
       query: {method:'GET', isArray:true}
     });
   }]);

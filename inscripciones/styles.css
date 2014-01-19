@@ -9,3 +9,11 @@
 .search input{
     width:100%;
 }
+
+.inscEdit {
+    display:none;
+}
+
+.form-error {
+    display:none;
+}

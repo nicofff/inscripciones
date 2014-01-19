@@ -1,0 +1,11 @@
+[
+    {"value":1, "label": "Médico"},
+    {"value":2, "label": "Bioquímico"},
+    {"value":3, "label": "Educador Terciario"},
+    {"value":4, "label": "Asistente Social"},
+    {"value":5, "label": "Psicólogo"},
+    {"value":6, "label": "Dietista"},
+    {"value":7, "label": "Sociólogo"},
+    {"value":8, "label": "Nutricionista"},
+    {"value":9, "label": "Asistente de endoscopía"}
+ ]

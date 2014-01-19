@@ -1,0 +1,57 @@
+<div class="inscripcion" >
+            <form id="form-inscrip" name="nueva-inscripcion" action="save.php" method="post">
+                <span>Apellido: </span><input type="text" name="apellido" data-validation="required"><br/>
+                <span>Nombre: </span><input type="text" name="nombre" data-validation="required"><br/>
+                <span>Email: </span><input type="text" name="email" data-validation="required,email"><br/>
+                <span>Tipo de Documento: </span>
+                <select name="tipoDoc" data-validation="required">
+                    <option value="1">DNI</option>
+                    <option value="2">LC</option>
+                    <option value="3">LE</option>
+                    <option value="4">Pasaporte</option>
+                </select>
+                <span>Numero Documento: </span><input type="text" name="numeroDoc" data-validation="required,number"><br/>
+                <div ng-controller="paisesCtrl">
+                    <span>Pais de Nacimiento:</span>
+                    <select name="paisNac">
+                        <option ng-repeat="pais in paisesNac" value="{{pais.value}}">{{pais.label}}</option>
+                    </select>
+                </div>
+                <div ng-controller="profesionesCtrl">
+
+                    <span>Profesion: </span>
+                    <select name="profesion">
+                        <option ng-repeat="prefesion in profesiones" value="{{prefesion.value}}">{{prefesion.label}}</option>
+                    </select>
+                </div>
+                <span>Especialidad: </span><input type="text" name="especialidad" data-validation="required"><br/>
+                <span>Pais de Residencia:</span>
+                <div ng-controller="paisesCtrl">
+                    <select name="paisRes">
+                        <option ng-repeat="pais in paisesRes" value="{{pais.value}}">{{pais.label}}</option>
+                    </select>
+                </div>
+                <span>Provincia: </span><input type="text" name="provincia" data-validation="required"><br/>
+                <span>Domicilio: </span><input type="text" name="domicilio" data-validation="required"><br/>
+                <span>Codigo Postal: </span><input type="text" name="codigoPostal" data-validation="required"><br/>
+
+                <span>Esta Becado: </span>
+                <select name="esBecado" id="becado-select">
+                    <option value="-">Seleccione uno</option>
+                    <option value="0">No</option>
+                    <option value="1">Si</option>
+                </select>
+                <div class="nobecado">
+                    <p>Ud debera abonar $50 a la hora de acreditarse</p>
+                    <input type="checkbox" id="aceptoNoBecado"/> Comprendo y acepto
+                </div>
+                <div class="becado" ng-controller="laboratoriosCtrl">
+                    <span>Laboratorio que concede la beca</span>
+                    <select name="laboratorio">
+                        <option ng-repeat="labo in laboratorios" value="{{labo.value}}">{{labo.label}}</option>
+                    </select>
+                </div>
+                <input type="submit" value="Guardar"/>
+            </form>
+
+        </div>
