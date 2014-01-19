@@ -5,15 +5,13 @@ $data = json_decode($postdata,true);
 
 $inscripto = new Inscripto($data);
 if (!$inscripto->validate()){
-    header("Location: nueva.html");
-    die();
+    echo json_encode(array("success"=> false));
 }
 
 if ($inscripto->estaRegistrado()){
     header("Location: UsuarioRegistrado.php?existente=1&tipoDoc=".$inscripto->tipoDoc."&NumeroDoc=".$inscripto->numeroDoc);
-    die();
+    echo json_encode(array("success"=> true, "redirect" => "UsuarioRegistrado.php?existente=1&tipoDoc=".$inscripto->tipoDoc."&NumeroDoc=".$inscripto->numeroDoc));
 }
 
 $inscripto->save();
-header("Location: UsuarioRegistrado.php?existente=0&tipoDoc=".$inscripto->tipoDoc."&NumeroDoc=".$inscripto->numeroDoc);
-die();
+echo json_encode(array("success"=> true, "redirect" => "UsuarioRegistrado.php?existente=1&tipoDoc=".$inscripto->tipoDoc."&NumeroDoc=".$inscripto->numeroDoc));

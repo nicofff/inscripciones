@@ -10,7 +10,7 @@ inscControllers.controller('nuevoCtrl', ['$scope', 'Inscriptos', 'Paises', 'Prof
         $scope.tiposDoc = TiposDoc.query();
     }]);
 
-inscControllers.controller('nuevoCtrl', ['$scope', 'Inscriptos', 'Paises', 'Profesiones', 'Laboratorios', 'TiposDoc', 'Provincias','NuevoSave', function($scope, Inscriptos, Paises, Profesiones, Laboratorios, TiposDoc, Provincias, NuevoSave) {
+inscControllers.controller('nuevoCtrl', ['$scope','$window', 'Inscriptos', 'Paises', 'Profesiones', 'Laboratorios', 'TiposDoc', 'Provincias','NuevoSave', function($scope, $window, Inscriptos, Paises, Profesiones, Laboratorios, TiposDoc, Provincias, NuevoSave) {
         $scope.inscriptos = Inscriptos.query();
         $scope.paisesNac = Paises.query();
         $scope.paisesRes = Paises.query();
@@ -43,7 +43,11 @@ inscControllers.controller('nuevoCtrl', ['$scope', 'Inscriptos', 'Paises', 'Prof
                     }
                 }
             }
-            NuevoSave.save($scope.nuevo);
+            NuevoSave.save($scope.nuevo, function (data){
+                if (data.success){
+                    $window.location.href = data.redirect;
+                }
+            });
         };
     }]);
 
