@@ -7,8 +7,12 @@ var inscApp = angular.module('inscApp', [
 inscApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
+                when('/',{
+                    templateUrl: 'list.html',
+                    controller: 'adminCtrl'
+                }).
                 when('/editar/:inscId', {
-                    templateUrl: 'partials/editar.html',
+                    templateUrl: 'editar.html',
                     controller: 'editCtrl'
                 }).
                 otherwise({

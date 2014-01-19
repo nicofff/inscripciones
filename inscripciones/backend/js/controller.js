@@ -11,25 +11,24 @@ inscControllers.controller('adminCtrl', ['$scope', 'Inscriptos', function($scope
 
     }]);
 
-inscControllers.controller('editCtrl', ['$scope','$window', '$location', 'Inscriptos', 'Paises', 'Profesiones', 'Laboratorios', 'TiposDoc', 'Provincias','EditSave', function($scope, $window, $location, Inscriptos, Paises, Profesiones, Laboratorios, TiposDoc, Provincias, EditSave) {
+inscControllers.controller('editCtrl', ['$scope','$location', '$routeParams', 'Inscriptos', 'Paises', 'Profesiones', 'Laboratorios', 'TiposDoc', 'Provincias','EditSave', function($scope, $location, $routeParams, Inscriptos, Paises, Profesiones, Laboratorios, TiposDoc, Provincias, EditSave) {
         $scope.paisesNac = Paises.query();
         $scope.paisesRes = Paises.query();
         $scope.profesiones = Profesiones.query();
         $scope.laboratorios = Laboratorios.query();
         $scope.tiposDoc = TiposDoc.query();
         $scope.provincias = Provincias.query();
-        $scope.asd= $location.search("id");
-        $scope.inscripto = Inscriptos.get({id:$location.search("id")},
+        $scope.inscripto = Inscriptos.get({id:$routeParams.inscId},
             function(insc){
-                if (insc.PaisRes == 1){
-                    for (i=1;i< $scope.provincias.length ; i++){
-                        if ($scope.provincias[i].label == insc.Provincia){
-                            insc.Provincia = $scope.provincias[i].value;
+                if (insc.paisRes == 1){
+                    for (i=0;i< $scope.provincias.length ; i++){
+                        if ($scope.provincias[i].label == insc.provincia){
+                            insc.provincia = $scope.provincias[i].value;
                             break;
                         }
                     }
                 }
-                if (insc.Laboratorio!=0){
+                if (insc.laboratorio!=0){
                     $scope.becadoCheck = 1;
                 }else {
                     $scope.becadoCheck = 0;
@@ -48,17 +47,17 @@ inscControllers.controller('editCtrl', ['$scope','$window', '$location', 'Inscri
         };
         
         $scope.submitForm = function (){
-            if ($scope.nuevo.paisRes == 1){
+            if ($scope.inscripto.paisRes == 1){
                 for (i=1;i< $scope.provincias.length ; i++){
-                    if ($scope.provincias[i].value == $scope.nuevo.provincia){
-                        $scope.nuevo.provincia = $scope.provincias[i].label;
+                    if ($scope.provincias[i].value == $scope.inscripto.provincia){
+                        $scope.inscripto.provincia = $scope.provincias[i].label;
                         break;
                     }
                 }
             }
-            EditSave.save($scope.nuevo, function (data){
+            EditSave.save($scope.inscripto, function (data){
                 if (data.success){
-                    $window.location.href = "admin.php"
+                    $location.path("/");
                 }
             });
         };

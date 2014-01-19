@@ -144,7 +144,7 @@ class Inscripto {
         if (!filter_var($id,FILTER_VALIDATE_INT)){
             return false;
         }
-        $query= "SELECT I.ID,I.Apellido,I.Nombre,I.TipoDoc,I.NumeroDoc,I.PaisNac,I.Profesion,I.Especialidad,I.PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email, I.Laboratorio ";
+        $query= "SELECT I.ID,I.Apellido as apellido,I.Nombre as nombre,I.TipoDoc as tipoDoc,I.NumeroDoc as numeroDoc,I.PaisNac as paisNac,I.Profesion as profesion,I.Especialidad as especialidad,I.PaisRes as paisRes,I.Provincia as provincia,I.Domicilio as domicilio,I.CodigoPostal as codigoPostal,I.Email as email, I.Laboratorio as laboratorio ";
         $query.= "from Inscriptos I ";
         $query.= "where I.ID=".$id;
         if ($result = $MYSQLI->query($query)){

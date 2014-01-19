@@ -15,37 +15,24 @@ function handleDelete() {
 }
 
 function handlePost() {
-    $data = $_POST;
+    $postdata = file_get_contents("php://input");
+    $data = json_decode($postdata,true);
     if (isset($data["ID"])){
         handleUpdate();
     }
-
-    $inscripto = new Inscripto($data);
-    if (!$inscripto->validate()) {
-        header("Location: nueva.html");
-        die();
-    }
-
-    if ($inscripto->estaRegistrado()) {
-        header("Location: UsuarioRegistrado.php?existente=1&tipoDoc=" . $inscripto->tipoDoc . "&NumeroDoc=" . $inscripto->numeroDoc);
-        die();
-    }
-
-    $inscripto->save();
-    header("Location: UsuarioRegistrado.php?existente=0&tipoDoc=" . $inscripto->tipoDoc . "&NumeroDoc=" . $inscripto->numeroDoc);
-    die();
 }
 
 function handleUpdate(){
-    $data = $_POST;
+    $postdata = file_get_contents("php://input");
+    $data = json_decode($postdata,true);
 
     $inscripto = new Inscripto($data);
     if (!$inscripto->validate()) {
-        header("Location: admin.html");
-        die();
+        echo json_encode(array("success"=> false, "valid" => false));
+        return;
     }
     $inscripto->update($data["ID"]);
-    header("Location: ../admin.php");
+    echo json_encode(array("success"=> true ));
     die();
 
 }

@@ -1,53 +1,39 @@
-<!DOCTYPE html>
-<html ng-app="inscApp">
-    <head>
-        <title>Nueva inscripcion</title>
-        <script src="../angular/angular.min.js"></script>
-        <script src="../angular/angular-route.min.js"></script>
-        <script src="../angular/angular-resource.js"></script>
-        <script src="js/controller.js"></script>
-        <script src="js/services.js"></script>
-        <script src="js/app.js"></script>
-        <link rel="stylesheet" href="styles.css"/>
-    </head>
-    <body>
-
         <div class="inscripcion" >
-            <form novalidate ng-controller="editCtrl" name="nuevoInsc" ng-submit="submitForm()">
+            <form novalidate name="nuevoInsc" ng-submit="submitForm()">
                 <input type='text' style="display:none" ng-model='inscripto.ID'/>
-                <span>Apellido: </span><input type="text" ng-model="inscripto.Apellido" required/><br/>
-                <span>Nombre: </span><input type="text" ng-model="inscripto.Nombre" required/><br/>
-                <span>Email: </span><input type="email" ng-model="inscripto.Email" required/><br/>
+                <span>Apellido: </span><input type="text" ng-model="inscripto.apellido" required/><br/>
+                <span>Nombre: </span><input type="text" ng-model="inscripto.nombre" required/><br/>
+                <span>Email: </span><input type="email" ng-model="inscripto.email" required/><br/>
                 <span>Tipo de Documento: </span>
-                <select ng-model="inscripto.TipoDoc">
+                <select ng-model="inscripto.tipoDoc">
                     <option ng-repeat="tipoDoc in tiposDoc" value="{{tipoDoc.value}}">{{tipoDoc.label}}</option>
                 </select>
-                <span>Numero Documento: </span><input type="text" ng-model="inscripto.NumeroDoc" ng-pattern="/[0-9]{7,9}/"/><br/>
+                <span>Numero Documento: </span><input type="text" ng-model="inscripto.numeroDoc" ng-pattern="/[0-9]{7,9}/"/><br/>
                 <span>Pais de Nacimiento:</span>
-                <select ng-model="inscripto.PaisNac">
+                <select ng-model="inscripto.paisNac">
                     <option ng-repeat="pais in paisesNac" value="{{pais.value}}">{{pais.label}}</option>
                 </select>
 
                 <span>Profesion: </span>
-                <select ng-model="inscripto.Profesion">
+                <select ng-model="inscripto.profesion">
                     <option ng-repeat="prefesion in profesiones" value="{{prefesion.value}}">{{prefesion.label}}</option>
                 </select>
-                <span>Especialidad: </span><input type="text" ng-model="inscripto.Especialidad" required/><br/>
+                <span>Especialidad: </span><input type="text" ng-model="inscripto.especialidad" required/><br/>
                 <span>Pais de Residencia:</span>
-                <select ng-model="inscripto.PaisRes" ng-change="checkPais()">
+                <select ng-model="inscripto.paisRes" ng-change="checkPais()">
                     <option ng-repeat="pais in paisesRes" value="{{pais.value}}">{{pais.label}}</option>
                 </select>
-                <div ng-show="inscripto.PaisRes == '1'">
+                <div ng-show="inscripto.paisRes == '1'">
                     <span>Provincia: </span>
-                    <select ng-model="inscripto.Provincia">
+                    <select ng-model="inscripto.provincia">
                         <option ng-repeat="provincia in provincias" value="{{provincia.value}}">{{provincia.label}}</option>
                     </select>
                 </div>
-                <div ng-hide="inscripto.PaisRes == '1'">
-                    <span>Provincia: </span><input type="text" ng-model="inscripto.Provincia" required/><br/>
+                <div ng-hide="inscripto.paisRes == '1'">
+                    <span>Provincia: </span><input type="text" ng-model="inscripto.provincia" required/><br/>
                 </div>
-                <span>Domicilio: </span><input type="text" ng-model="inscripto.Domicilio" required/><br/>
-                <span>Codigo Postal: </span><input type="text" ng-model="inscripto.CodigoPostal" required/><br/>
+                <span>Domicilio: </span><input type="text" ng-model="inscripto.domicilio" required/><br/>
+                <span>Codigo Postal: </span><input type="text" ng-model="inscripto.codigoPostal" required/><br/>
 
                 <span>Esta Becado: </span>
                 <input type="radio" ng-model="becadoCheck" value="0"/> No <br/>
@@ -62,5 +48,3 @@
             </form>
 
         </div>
-    </body>
-</html>
