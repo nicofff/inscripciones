@@ -36,6 +36,13 @@ function handleUpdate(){
     die();
 
 }
+session_start();
+
+if (!isset($_SESSION['sess_user_id']) || (trim($_SESSION['sess_user_id']) == '')) {
+    header("location: login.html");
+    exit();
+}
+
 include "../model/Inscripto.php";
 
 switch ($_SERVER["REQUEST_METHOD"]) {

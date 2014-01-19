@@ -21,7 +21,7 @@
                 <select ng-model="nuevo.tipoDoc">
                     <option ng-repeat="tipoDoc in tiposDoc" value="{{tipoDoc.value}}">{{tipoDoc.label}}</option>
                 </select>
-                <span>Numero Documento: </span><input type="text" ng-model="nuevo.numeroDoc" ng-pattern="/[0-9]{7,9}/"/><br/>
+                <span>Numero Documento: </span><input type="text" ng-model="nuevo.numeroDoc" ng-pattern="/^[0-9]{7,9}$/"/><br/>
                 <span>Pais de Nacimiento:</span>
                 <select ng-model="nuevo.paisNac">
                     <option ng-repeat="pais in paisesNac" value="{{pais.value}}">{{pais.label}}</option>

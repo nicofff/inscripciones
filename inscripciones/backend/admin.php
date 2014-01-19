@@ -1,3 +1,14 @@
+<?php
+//Start session
+session_start();
+
+//Check whether the session variable SESS_MEMBER_ID is present or not
+if (!isset($_SESSION['sess_user_id']) || (trim($_SESSION['sess_user_id']) == '')) {
+    header("location: login.html");
+    exit();
+}
+?>
+
 <html ng-app="inscApp">
     <head>
         <script src="../angular/angular.min.js"></script>
@@ -9,8 +20,12 @@
         <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
-        
+        <div class="login">
+            <span><?php echo $_SESSION['sess_username']; ?></span>
+            <a href="logout.php">Logout</a>
+        </div>
+        <div class="content">
             <div ng-view></div>
-
-     </body>
+        </div>
+    </body>
 </html>
