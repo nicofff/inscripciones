@@ -9,9 +9,9 @@ inscApp.config(['$routeProvider',
         $routeProvider.
                 when('/editar/:inscId', {
                     templateUrl: 'partials/editar.html',
-                    controller: 'PhoneDetailCtrl'
+                    controller: 'editCtrl'
                 }).
                 otherwise({
-                    redirectTo: '/phones'
+                    redirectTo: '/'
                 });
     }]);

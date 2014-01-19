@@ -150,8 +150,7 @@ class Inscripto {
         if ($result = $MYSQLI->query($query)){
             $result = $result->fetch_object();
             $MYSQLI->close();
-            //return json_encode($json);
-            return $result;
+            return json_encode($result);
         }else {
             die();
         }

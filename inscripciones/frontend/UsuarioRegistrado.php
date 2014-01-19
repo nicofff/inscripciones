@@ -1,5 +1,5 @@
 <?php
-include "model/dbConn.php"; # me da el obj $MYSQLI
+include "../model/dbConn.php"; # me da el obj $MYSQLI
 $query = "SELECT * from Inscriptos where TipoDoc = " . $_GET["tipoDoc"] . " AND NumeroDoc = " . $_GET["NumeroDoc"];
 if ($result = $MYSQLI->query($query)) {
     $resObj = $result->fetch_object();

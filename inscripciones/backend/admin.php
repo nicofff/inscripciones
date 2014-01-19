@@ -1,15 +1,12 @@
 <html ng-app="inscApp">
     <head>
-        <script src="js/jquery-1.10.2.min.js"></script>
-        <script src="angular/angular.min.js"></script>
-        <script src="angular/angular-route.min.js"></script>
-        <script src="angular/angular-resource.js"></script>
+        <script src="../angular/angular.min.js"></script>
+        <script src="../angular/angular-route.min.js"></script>
+        <script src="../angular/angular-resource.js"></script>
         <script src="js/controller.js"></script>
         <script src="js/services.js"></script>
         <script src="js/app.js"></script>
-        <link rel="stylesheet" href="styles.css"/>
-        <script src="js/xeditable.min.js"></script>
-        <link rel="stylesheet" href="js/xeditable.css"/>
+        <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body ng-controller="adminCtrl">
         <table border="1">
