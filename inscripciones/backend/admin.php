@@ -14,8 +14,10 @@ if (!isset($_SESSION['sess_user_id']) || (trim($_SESSION['sess_user_id']) == '')
         <script src="../angular/angular.min.js"></script>
         <script src="../angular/angular-route.min.js"></script>
         <script src="../angular/angular-resource.js"></script>
+        <script src="../angular/angular-sanitize.min.js"></script>
         <script src="js/controller.js"></script>
         <script src="js/services.js"></script>
+        <script src="js/ng-csv.js"></script>
         <script src="js/app.js"></script>
         <link rel="stylesheet" href="css/styles.css"/>
     </head>

@@ -2,7 +2,9 @@
 var inscApp = angular.module('inscApp', [
     'ngRoute',
     'inscControllers',
-    'inscServices']);
+    'inscServices',
+    'ngSanitize',
+    'ngCsv']);
 
 inscApp.config(['$routeProvider',
     function($routeProvider) {

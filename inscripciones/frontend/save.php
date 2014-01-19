@@ -9,7 +9,6 @@ if (!$inscripto->validate()){
 }
 
 if ($inscripto->estaRegistrado()){
-    header("Location: UsuarioRegistrado.php?existente=1&tipoDoc=".$inscripto->tipoDoc."&NumeroDoc=".$inscripto->numeroDoc);
     echo json_encode(array("success"=> true, "redirect" => "UsuarioRegistrado.php?existente=1&tipoDoc=".$inscripto->tipoDoc."&NumeroDoc=".$inscripto->numeroDoc));
 }
 

@@ -11,3 +11,10 @@ input.ng-valid.ng-dirty{
 .inscEdit {
     display:none;
 }
+
+@media print
+{
+    .imprimir {
+        display:none;
+    }
+}

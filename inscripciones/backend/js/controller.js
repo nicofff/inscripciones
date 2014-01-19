@@ -8,6 +8,7 @@ inscControllers.controller('adminCtrl', ['$scope', 'Inscriptos', function($scope
             Inscriptos.borrar({id: insc.ID}, function (success) {
                 $scope.inscriptos = Inscriptos.query();
         });};
+        
 
     }]);
 
@@ -29,9 +30,9 @@ inscControllers.controller('editCtrl', ['$scope','$location', '$routeParams', 'I
                     }
                 }
                 if (insc.laboratorio!=0){
-                    $scope.becadoCheck = 1;
+                    $scope.inscripto.esBecado = 1;
                 }else {
-                    $scope.becadoCheck = 0;
+                    $scope.inscripto.esBecado = 0;
 
                 }
             }

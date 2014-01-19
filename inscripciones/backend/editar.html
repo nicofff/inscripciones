@@ -36,9 +36,9 @@
                 <span>Codigo Postal: </span><input type="text" ng-model="inscripto.codigoPostal" required/><br/>
 
                 <span>Esta Becado: </span>
-                <input type="radio" ng-model="becadoCheck" value="0"/> No <br/>
-                <input type="radio" ng-model="becadoCheck" value="1"/> Si <br/>
-                <div ng-show="becadoCheck==1">
+                <input type="radio" ng-model="inscripto.esBecado" value="0"/> No <br/>
+                <input type="radio" ng-model="inscripto.esBecado" value="1"/> Si <br/>
+                <div ng-show="inscripto.esBecado==1">
                     <span>Laboratorio que concede la beca</span>
                     <select ng-model="inscripto.laboratorio">
                         <option ng-repeat="labo in laboratorios" value="{{labo.value}}">{{labo.label}}</option>

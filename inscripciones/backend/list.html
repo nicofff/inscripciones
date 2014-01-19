@@ -55,5 +55,5 @@
             </td>
         </tr>
     </table>
-    <p><a href="exportar.php">Exportar a excel</a></p>
+    <button type="button" ng-csv="inscriptos|filter:search:strict" filename="export.csv" csv-header="['ID','Apellido','Nombre','Tipo Documento','Numero Documento','Pais Nacimiento','Profesion','Especialidad','Pais Residencia','Provincia','Domicilio','Codigo Postal','Email','Laboratorio']"/>Exportar a Excel</button>
 </div>

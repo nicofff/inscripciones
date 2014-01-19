@@ -124,7 +124,7 @@ class Inscripto {
     
     public static function getAll() {
         include "dbConn.php"; # me da el obj $MYSQLI
-        $query= "SELECT I.ID, I.Apellido,I.Nombre,I.TipoDoc as CodDoc, T.Nombre as TipoDoc,I.NumeroDoc,P1.Nombre as PaisNac,PR.Nombre as Profesion,I.Especialidad,P2.Nombre as PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email, L.Nombre as Laboratorio ";
+        $query= "SELECT I.ID, I.Apellido,I.Nombre, T.Nombre as TipoDoc,I.NumeroDoc,P1.Nombre as PaisNac,PR.Nombre as Profesion,I.Especialidad,P2.Nombre as PaisRes,I.Provincia,I.Domicilio,I.CodigoPostal,I.Email, L.Nombre as Laboratorio ";
         $query.= "from Inscriptos I, Paises P1 , Paises P2, Profesion PR, TipoDoc T, Laboratorios L ";
         $query.= "where P1.id = I.PaisNac AND P2.id = I.paisRes AND I.Profesion = PR.ID and I.TipoDoc = T.ID and L.ID = I.Laboratorio";
         if ($result = $MYSQLI->query($query)){

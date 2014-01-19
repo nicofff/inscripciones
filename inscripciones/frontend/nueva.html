@@ -20,22 +20,22 @@
                 <span>Tipo de Documento: </span>
                 <select ng-model="nuevo.tipoDoc">
                     <option ng-repeat="tipoDoc in tiposDoc" value="{{tipoDoc.value}}">{{tipoDoc.label}}</option>
-                </select>
+                </select><br/>
                 <span>Numero Documento: </span><input type="text" ng-model="nuevo.numeroDoc" ng-pattern="/^[0-9]{7,9}$/"/><br/>
                 <span>Pais de Nacimiento:</span>
                 <select ng-model="nuevo.paisNac">
                     <option ng-repeat="pais in paisesNac" value="{{pais.value}}">{{pais.label}}</option>
-                </select>
+                </select><br/>
 
                 <span>Profesion: </span>
                 <select ng-model="nuevo.profesion">
                     <option ng-repeat="prefesion in profesiones" value="{{prefesion.value}}">{{prefesion.label}}</option>
-                </select>
+                </select><br/>
                 <span>Especialidad: </span><input type="text" ng-model="nuevo.especialidad" required/><br/>
                 <span>Pais de Residencia:</span>
                 <select ng-model="nuevo.paisRes" ng-change="checkPais()">
                     <option ng-repeat="pais in paisesRes" value="{{pais.value}}">{{pais.label}}</option>
-                </select>
+                </select><br/>
                 <div ng-show="nuevo.paisRes == '1'">
                     <span>Provincia: </span>
                     <select ng-model="nuevo.provincia">
@@ -43,25 +43,27 @@
                     </select>
                 </div>
                 <div ng-hide="nuevo.paisRes == '1'">
-                    <span>Provincia: </span><input type="text" ng-model="nuevo.provincia" required/><br/>
+                    <span>Provincia: </span><input type="text" ng-model="nuevo.provincia" required/>
                 </div>
                 <span>Domicilio: </span><input type="text" ng-model="nuevo.domicilio" required/><br/>
                 <span>Codigo Postal: </span><input type="text" ng-model="nuevo.codigoPostal" required/><br/>
 
                 <span>Esta Becado: </span>
-                <input type="radio" ng-model="becadoCheck" value="0"/> No <br/>
-                <input type="radio" ng-model="becadoCheck" value="1"/> Si <br/>
-                <div ng-show="becadoCheck==0">
+                <div>
+                <input type="radio" ng-model="nuevo.esBecado" value="0"/> No <br/>
+                <input type="radio" ng-model="nuevo.esBecado" value="1"/> Si <br/>
+                </div>
+                <div ng-show="esBecado==0">
                     <p>Ud debera abonar $50 a la hora de acreditarse</p>
                     <input type="checkbox" ng-model="becadoAcepto" ng-required="becadoCheck=='0'"/> Comprendo y acepto
                 </div>
-                <div ng-show="becadoCheck==1">
+                <div ng-show="esBecado==1">
                     <span>Laboratorio que concede la beca</span>
                     <select ng-model="nuevo.laboratorio">
                         <option ng-repeat="labo in laboratorios" value="{{labo.value}}">{{labo.label}}</option>
                     </select>
                 </div>
-                <input ng-disabled="nuevoInsc.$invalid || !becadoCheck" type="submit" value="Guardar"/>
+                <input ng-disabled="nuevoInsc.$invalid || !esBecado" type="submit" value="Guardar"/>
             </form>
 
         </div>

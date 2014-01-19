@@ -10,6 +10,9 @@ if ($result = $MYSQLI->query($query)) {
 }
 ?>
 <html>
+    <head>
+        <link rel="stylesheet" href="css/styles.css"/>
+    </head>
     <body>
         <h1>
             Datos Registro
@@ -17,7 +20,12 @@ if ($result = $MYSQLI->query($query)) {
         <span>Codigo registro: <?php echo sha1($resObj->ID);?></span>
         <p>
             <span> Nombre: <?php echo $resObj->Nombre;?></span><br/>
-            <span> Apellido: <?php echo $resObj->Apellido;?></span>
+            <span> Apellido: <?php echo $resObj->Apellido;?></span><br/>
+            <span> Situacion Becaria: <?php echo ($resObj->Laboratorio)?"Becado":"No Becado";?></span><br/>
         </p>
+        
+        <div class="imprimir">
+            <input type="button" onclick="window.print()" value="Imprimir"/>
+        </div>
     </body>
 </html>
