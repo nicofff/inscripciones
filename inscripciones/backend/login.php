@@ -5,10 +5,11 @@ session_start();
 
 $username = $_POST['username'];
 $password = $_POST['password'];
-$username = mysql_real_escape_string($username);
 
 include "../model/dbConn.php"; # me da el obj $MYSQLI
+$username = $MYSQLI->real_escape_string($username);
 $query = "SELECT * from Usuarios where username = '" . $username . "'";
+
 if ($result = $MYSQLI->query($query)) {
     $resObj = $result->fetch_object();
     $MYSQLI->close();

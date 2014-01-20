@@ -53,17 +53,17 @@
                 <input type="radio" ng-model="nuevo.esBecado" value="0"/> No <br/>
                 <input type="radio" ng-model="nuevo.esBecado" value="1"/> Si <br/>
                 </div>
-                <div ng-show="esBecado==0">
+                <div ng-show="nuevo.esBecado==0">
                     <p>Ud debera abonar $50 a la hora de acreditarse</p>
-                    <input type="checkbox" ng-model="becadoAcepto" ng-required="becadoCheck=='0'"/> Comprendo y acepto
+                    <input type="checkbox" ng-model="becadoAcepto" ng-required="nuevo.esBecado=='0'"/> Comprendo y acepto
                 </div>
-                <div ng-show="esBecado==1">
+                <div ng-show="nuevo.esBecado==1">
                     <span>Laboratorio que concede la beca</span>
                     <select ng-model="nuevo.laboratorio">
                         <option ng-repeat="labo in laboratorios" value="{{labo.value}}">{{labo.label}}</option>
                     </select>
                 </div>
-                <input ng-disabled="nuevoInsc.$invalid || !esBecado" type="submit" value="Guardar"/>
+                <input ng-disabled="nuevoInsc.$invalid || !nuevo.esBecado" type="submit" value="Guardar"/>
             </form>
 
         </div>
