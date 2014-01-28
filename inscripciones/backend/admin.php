@@ -11,6 +11,7 @@ if (!isset($_SESSION['sess_user_id']) || (trim($_SESSION['sess_user_id']) == '')
 
 <html ng-app="inscApp">
     <head>
+        <meta charset="UTF-8"> 
         <script src="../angular/angular.min.js"></script>
         <script src="../angular/angular-route.min.js"></script>
         <script src="../angular/angular-resource.js"></script>

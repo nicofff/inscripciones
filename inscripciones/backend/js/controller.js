@@ -1,14 +1,27 @@
 
 var inscControllers = angular.module('inscControllers', []);
 
-inscControllers.controller('adminCtrl', ['$scope', 'Inscriptos', function($scope, Inscriptos) {
+inscControllers.controller('adminCtrl', ['$scope','$filter', 'Inscriptos','ToCSV', function($scope, $filter,Inscriptos,ToCSV) {
         $scope.inscriptos = Inscriptos.query();
 
         $scope.borrarInsc = function(insc) {
+            var conf = confirm("Seguro que queres borrar?");
+            if(!conf){
+                return;
+            }
             Inscriptos.borrar({id: insc.ID}, function (success) {
                 $scope.inscriptos = Inscriptos.query();
         });};
         
+        $scope.exportar = function (){
+            data= $filter('filter')($scope.inscriptos, $scope.search);
+            ToCSV.save(data, function(response){
+                var iframe = document.createElement("iframe");
+                iframe.setAttribute("src", response.url);
+                iframe.setAttribute("style", "display: none");
+                document.body.appendChild(iframe);
+            });
+        };
 
     }]);
 
