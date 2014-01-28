@@ -59,7 +59,7 @@ angular.module('ngCsv.directives', []).
 
           $scope.buildCsv = function () {
             var data = $scope.data();
-            var csvContent = 'data:text/csv;charset=utf-8,sep=,\r\n';
+            var csvContent = 'data:text/csv;charset=UTF-16,sep=,\r\n';
 
             // Check if there's a provided header array
             var header = $scope.header();

@@ -8,6 +8,7 @@ if ($result = $MYSQLI->query($query)) {
     print_r(mysqli_error($MYSQLI));
     die();
 }
+//TODO: Validar datos invalidos
 ?>
 <html>
     <head>
@@ -17,6 +18,12 @@ if ($result = $MYSQLI->query($query)) {
         <h1>
             Datos Registro
         </h1>
+        
+        <?php
+        if(isset($_GET["existente"]) && $_GET["existente"]=1){
+            echo "<h2>Usuario previamente registrado</h2>";
+        }
+        ?>
         <span>Codigo registro: <?php echo sha1($resObj->ID);?></span>
         <p>
             <span> Nombre: <?php echo $resObj->Nombre;?></span><br/>
