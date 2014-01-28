@@ -1,6 +1,7 @@
 <div>
     <table border="1">
         <thead>
+        <td>Codigo Inscripcion</td>
         <td>Apellido</td>
         <td>Nombre</td>
         <td>Tipo Documento</td>
@@ -17,6 +18,7 @@
         <td colspan="2">Opciones</td>
         </thead>
         <tr class="search">
+            <td><input ng-model="search.CodigoInscripcion"></td>
             <td><input ng-model="search.Apellido"></td>
             <td><input ng-model="search.Nombre"></td>
             <td><input ng-model="search.TipoDoc"></td>
@@ -34,6 +36,7 @@
             <td colspan="2">&nbsp;</td>
         </tr>
         <tr ng-repeat="inscripto in inscriptos|filter:search:strict">
+            <td><span>{{inscripto.CodigoInscripcion}}</span></td>
             <td><span>{{inscripto.Apellido}}</span></td>
             <td><span>{{inscripto.Nombre}}</span></td>
             <td><span>{{inscripto.TipoDoc}}</span></td>

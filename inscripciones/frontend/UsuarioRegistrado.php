@@ -1,6 +1,10 @@
 <?php
 include "../model/dbConn.php"; # me da el obj $MYSQLI
-$query = "SELECT * from Inscriptos where TipoDoc = " . $_GET["tipoDoc"] . " AND NumeroDoc = " . $_GET["NumeroDoc"];
+
+$existente = isset($_GET["existente"]) && $_GET["existente"]==1;
+
+
+$query = "SELECT * from Inscriptos where Email = '" . $_GET["email"]."'";
 if ($result = $MYSQLI->query($query)) {
     $resObj = $result->fetch_object();
     $MYSQLI->close();
@@ -8,7 +12,6 @@ if ($result = $MYSQLI->query($query)) {
     print_r(mysqli_error($MYSQLI));
     die();
 }
-//TODO: Validar datos invalidos
 ?>
 <html>
     <head>
@@ -20,14 +23,15 @@ if ($result = $MYSQLI->query($query)) {
         </h1>
         
         <?php
-        if(isset($_GET["existente"]) && $_GET["existente"]=1){
+        if($existente){
             echo "<h2>Usuario previamente registrado</h2>";
         }
         ?>
-        <span>Codigo registro: <?php echo sha1($resObj->ID);?></span>
+        <span>Codigo registro: <?php echo $resObj->CodigoInscripcion ;?></span>
         <p>
             <span> Nombre: <?php echo $resObj->Nombre;?></span><br/>
             <span> Apellido: <?php echo $resObj->Apellido;?></span><br/>
+            <span> Email: <?php echo $resObj->Email;?></span><br/>
             <span> Situacion Becaria: <?php echo ($resObj->Laboratorio)?"Becado":"No Becado";?></span><br/>
         </p>
         
