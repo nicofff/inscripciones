@@ -1,15 +1,6 @@
 body{
 	background: #2da2b2;}
 
-input.ng-invalid.ng-dirty {
-  border: 1px solid red;
-}
-input.ng-valid.ng-dirty{
-  border: 1px solid green;
-}
-.search input{
-    width:100%;
-}
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 		margin: 0;
 		padding: 0;
@@ -22,9 +13,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         font: 13px/1.65em "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
         margin-bottom: 3px;
         color: #666;
-        }
+        
+}
 
-input[type='text'],input[type='email'], select {
+input[type='text'],input[type='password'], select {
 border-color: #e1e1e1;
 background-color: #fcfcfc;
 color: #919191;
@@ -77,99 +69,22 @@ background: #E48E32;
 cursor: pointer;
 }
 
-.inscripcion{
+.login-form{
 	width: 300px;
 	display: block;
 	margin: 0px auto 20px;
-	padding: 230px 100px 50px 100px;
-	background: #fff url("../img/header-inscripcion.jpg") top left no-repeat;
+	padding: 140px 100px 50px 100px;
+	background: #fff url("../../frontend/img/header-login.jpg") top left no-repeat;
 }
 
-.registrado{
-	width: 300px;
-	display: block;
-	margin: 0px auto 20px;
-	padding: 230px 100px 50px 100px;
-	background: #fff url("../img/header-registrado.jpg") top left no-repeat;
+td.titulo{
+	font-weight: bold;
+	font-size: 16px;
+	text-align: center;
+	text-transform: uppercase;
 }
 
-.reimprimir{
-	width: 300px;
-	display: block;
-	margin: 0px auto 20px;
-	padding: 230px 100px 50px 100px;
-	background: #fff url("../img/header-reimprimir.jpg") top left no-repeat;
-}
-
-.registrado h1{
-font-size: 16px;
-text-align: center;
-font-weight: bold;
-text-transform: uppercase;
-}
-
-.registrado h2{
-font-size: 14px;
-text-align: center;
-font-weight: bold;
-color: #2da2b2;
-}
-
-.registrado p{
-border-top: 2px solid #f4f4f4;
-margin: 15px 0px;
-padding: 15px 0px;
-}
-
-.registrado p span{
-margin: 5px 0px;
-font-size: 13px;
-}
-
-.denominador{
-display: inline;
-font-weight: bold;
-}
-
-.solo-impresion{
-	display: none;
-}
-
-.inscEdit {
-    display:none;
-}
-
-@media print
-{
-    .imprimir {
-        display:none;
-    }
-
-    body{
-    	background: #fff;
-    }
-
-.solo-impresion{
-	width: 500px;
-	display: block;
-	margin: 0px auto 0px;
-	padding: 0px 0px 0px 0px;
-	display: block;
-	border-top: 2px solid #f8f8f8;
-	border-left: 2px solid #f8f8f8;
-	border-right: 2px solid #f8f8f8;
-
-}
-
-.registrado{
-	width: 300px;
-	display: block;
-	margin: 0px auto 0px;
-	padding: 0px 100px 50px 100px;
-	background: none;
-		border-bottom: 2px solid #f8f8f8;
-	border-left: 2px solid #f8f8f8;
-	border-right: 2px solid #f8f8f8;
-}
+td{
+    max-width: 300px;
 
 }

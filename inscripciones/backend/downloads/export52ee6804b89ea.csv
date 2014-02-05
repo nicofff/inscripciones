@@ -1,0 +1,5 @@
+sep=,
+ID,Apellido,Nombre,TipoDoc,NumeroDoc,PaisNac,Profesion,Especialidad,PaisRes,Provincia,Domicilio,CodigoPostal,Email,Laboratorio,CodigoInscripcion
+1,asd,asd,DNI,298347239,Argentina,"Médico ",asdqwe,Argentina,"Ciudad Autónoma Bs.As.",asd,ads,alskdm@asdja.com,Ninguno,427178d4
+2,Nicolas,Far,DNI,34617198,Argentina,"Educador Terciario ",Traqueotomia,Argentina,"Ciudad Autónoma Bs.As.","Pola 435 2C",1408,nicofff@gmail.com,Domínguez,b2d3972b
+3,García,García,DNI,656523489,Argentina,"Médico ",García,Argentina,"Ciudad Autónoma Bs.As.",García,García,asd@asd.com,Ninguno,0b060901

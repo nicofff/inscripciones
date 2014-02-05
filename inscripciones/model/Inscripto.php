@@ -34,6 +34,7 @@ class Inscripto {
                 return false;
             }else{
                 $this->email = $resObj->Email;
+                return true;
             }
         } else {
             die();
@@ -131,7 +132,7 @@ class Inscripto {
             $MYSQLI->close();
             return json_encode($json);
         } else {
-            die();
+            echo mysqli_error($MYSQLI);
         }
     }
 

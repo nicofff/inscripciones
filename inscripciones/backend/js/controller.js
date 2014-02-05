@@ -1,8 +1,16 @@
 
 var inscControllers = angular.module('inscControllers', []);
 
-inscControllers.controller('adminCtrl', ['$scope','$filter', 'Inscriptos','ToCSV', function($scope, $filter,Inscriptos,ToCSV) {
-        $scope.inscriptos = Inscriptos.query();
+inscControllers.controller('adminCtrl', ['$scope','$filter', 'Inscriptos','ToCSV','Provincias', function($scope, $filter,Inscriptos,ToCSV, Provincias) {
+        $scope.provincias = Provincias.query();
+        $scope.inscriptos = Inscriptos.query({},function (InscriptosArray){
+            for (i=0;i<InscriptosArray.length;i++){
+                if (InscriptosArray[i].PaisRes=="Argentina"){
+                    provincias = $filter('filter')($scope.provincias, {value:InscriptosArray[i].Provincia});
+                    InscriptosArray[i].Provincia=provincias[0].label;
+                }
+            }
+        });
 
         $scope.borrarInsc = function(insc) {
             var conf = confirm("Seguro que queres borrar?");

@@ -9,6 +9,7 @@ inscControllers.controller('nuevoCtrl', ['$scope','$window', 'Paises', 'Profesio
         $scope.laboratorios = Laboratorios.query();
         $scope.tiposDoc = TiposDoc.query();
         $scope.provincias = Provincias.query();
+        $scope.showErrors=0;
         $scope.nuevo = {};
         $scope.nuevo.tipoDoc = 1;
         $scope.nuevo.paisNac = 1;
@@ -26,6 +27,12 @@ inscControllers.controller('nuevoCtrl', ['$scope','$window', 'Paises', 'Profesio
         };
         
         $scope.submitForm = function (){
+            if ($scope.nuevoInsc.$invalid || !$scope.nuevo.esBecado){
+                $scope.showErrors=1;
+                return false;
+            }
+            
+            
             if ($scope.nuevo.paisRes == 1){
                 for (i=1;i< $scope.provincias.length ; i++){
                     if ($scope.provincias[i].value == $scope.nuevo.provincia){

@@ -25,14 +25,14 @@ include "../lib/PHPMailer/PHPMailerAutoload.php";
 $mail = new PHPMailer;
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com';  // Specify main and backup server
+$mail->Host = 'smtp.simposiocidemo2014.com.ar';  // Specify main and backup server
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'info@nicolasfar.com.ar';                            // SMTP username
-$mail->Password = 'tuvieja!';                           // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+$mail->Username = 'info@simposiocidemo2014.com.ar';                            // SMTP username
+$mail->Password = 'simposio2014123';                           // SMTP password
 
-$mail->From = 'info@nicolasfar.com.ar';
-$mail->FromName = 'Mailer';
+
+$mail->From = 'info@simposiocidemo2014.com.ar';
+$mail->FromName = 'Simposio CIDEMO';
 $mail->addAddress($inscripto->email);  // Add a recipient
 
 
@@ -40,7 +40,8 @@ $mail->WordWrap = 50;                                 // Set word wrap to 50 cha
 $mail->isHTML(true);                                  // Set email format to HTML
 
 $mail->Subject = 'Confirmacion Inscripcion';
-$mail->Body    = 'Ud se ha subscripto correctamente <br/> Para imprimir los datos de su subscripcion haga click <a href="'.$redirectURL.'?email='.$inscripto->email.'"> aqui</a>';
+
+$mail->Body    = '<img src="http://www.simposiocidemo2014.com.ar//wp-content/themes/enfold/inscripciones-master/inscripciones-master/frontend/img/header-mail.jpg" /> <br/> Ud se ha subscripto correctamente. <br/> Para imprimir los datos de su subscripcion haga click <a href="'.$redirectURL.'?email='.$inscripto->email.'"> aquí.</a>';
 
 if(!$mail->send()) {
    echo 'Message could not be sent.';

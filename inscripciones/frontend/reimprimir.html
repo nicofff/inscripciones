@@ -6,20 +6,16 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Busqueda de Comprobante</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
-        <form action="UsuarioRegistrado.php" method="GET">
-            <select name="tipoDoc">
-                <option value="1">DNI</option>
-                <option value="2">LC</option>
-                <option value="3">LE</option>
-                <option value="4">Pasaporte</option>
-            </select>
-            <input type="text" name="NumeroDoc"/>
+        <div class="reimprimir"><form action="UsuarioRegistrado.php" method="GET">
+            <span>Email:</span><input type="text" name="email"/>
             <input type="submit" value="Buscar"/>
         </form>
+    </div>
     </body>
 </html>
