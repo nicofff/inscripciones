@@ -9,6 +9,12 @@ inscControllers.controller('adminCtrl', ['$scope','$filter', 'Inscriptos','ToCSV
                     provincias = $filter('filter')($scope.provincias, {value:InscriptosArray[i].Provincia});
                     InscriptosArray[i].Provincia=provincias[0].label;
                 }
+                if (InscriptosArray[i].Categoria == "Becado"){
+                    InscriptosArray[i].CategoriaShow = "Becado por " + InscriptosArray[i].Laboratorio;
+                }else {
+                    InscriptosArray[i].CategoriaShow = InscriptosArray[i].Categoria;
+                }
+                
             }
         });
 
@@ -33,13 +39,14 @@ inscControllers.controller('adminCtrl', ['$scope','$filter', 'Inscriptos','ToCSV
 
     }]);
 
-inscControllers.controller('editCtrl', ['$scope','$location', '$routeParams', 'Inscriptos', 'Paises', 'Profesiones', 'Laboratorios', 'TiposDoc', 'Provincias','EditSave', function($scope, $location, $routeParams, Inscriptos, Paises, Profesiones, Laboratorios, TiposDoc, Provincias, EditSave) {
+inscControllers.controller('editCtrl', ['$scope','$location', '$routeParams', 'Inscriptos', 'Paises', 'Profesiones', 'Laboratorios', 'TiposDoc', 'Provincias','Categorias','EditSave', function($scope, $location, $routeParams, Inscriptos, Paises, Profesiones, Laboratorios, TiposDoc, Provincias,Categorias, EditSave) {
         $scope.paisesNac = Paises.query();
         $scope.paisesRes = Paises.query();
         $scope.profesiones = Profesiones.query();
         $scope.laboratorios = Laboratorios.query();
         $scope.tiposDoc = TiposDoc.query();
         $scope.provincias = Provincias.query();
+        $scope.categorias = Categorias.query();
         $scope.inscripto = Inscriptos.get({id:$routeParams.inscId},
             function(insc){
                 if (insc.paisRes == 1){
@@ -50,12 +57,12 @@ inscControllers.controller('editCtrl', ['$scope','$location', '$routeParams', 'I
                         }
                     }
                 }
-                if (insc.laboratorio!=0){
-                    $scope.inscripto.esBecado = 1;
-                }else {
-                    $scope.inscripto.esBecado = 0;
-
+                
+                if(insc.categoria > 2){
+                    insc.rol = insc.categoria;
+                    insc.categoria = 2;
                 }
+
             }
         );
 
@@ -69,6 +76,11 @@ inscControllers.controller('editCtrl', ['$scope','$location', '$routeParams', 'I
         };
         
         $scope.submitForm = function (){
+            
+            if($scope.inscripto.categoria == 2){
+                $scope.inscripto.categoria = $scope.inscripto.rol;
+            }
+            
             if ($scope.inscripto.paisRes == 1){
                 for (i=1;i< $scope.provincias.length ; i++){
                     if ($scope.provincias[i].value == $scope.inscripto.provincia){

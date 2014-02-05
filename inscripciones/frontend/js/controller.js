@@ -2,13 +2,14 @@
 var inscControllers = angular.module('inscControllers', []);
 
 
-inscControllers.controller('nuevoCtrl', ['$scope','$window', 'Paises', 'Profesiones', 'Laboratorios', 'TiposDoc', 'Provincias','NuevoSave', function($scope, $window, Paises, Profesiones, Laboratorios, TiposDoc, Provincias, NuevoSave) {
+inscControllers.controller('nuevoCtrl', ['$scope','$window', 'Paises', 'Profesiones', 'Laboratorios', 'TiposDoc', 'Provincias', 'Categorias', 'NuevoSave', function($scope, $window, Paises, Profesiones, Laboratorios, TiposDoc, Provincias, Categorias, NuevoSave) {
         $scope.paisesNac = Paises.query();
         $scope.paisesRes = Paises.query();
         $scope.profesiones = Profesiones.query();
         $scope.laboratorios = Laboratorios.query();
         $scope.tiposDoc = TiposDoc.query();
         $scope.provincias = Provincias.query();
+        $scope.categorias = Categorias.query();
         $scope.showErrors=0;
         $scope.nuevo = {};
         $scope.nuevo.tipoDoc = 1;
@@ -17,6 +18,7 @@ inscControllers.controller('nuevoCtrl', ['$scope','$window', 'Paises', 'Profesio
         $scope.nuevo.paisRes = 1;
         $scope.nuevo.provincia = 1;
         $scope.nuevo.laboratorio = 1;
+        $scope.nuevo.rol = 3;
         
         $scope.checkPais = function (){
             if ($scope.nuevo.paisRes == 1){
@@ -27,9 +29,13 @@ inscControllers.controller('nuevoCtrl', ['$scope','$window', 'Paises', 'Profesio
         };
         
         $scope.submitForm = function (){
-            if ($scope.nuevoInsc.$invalid || !$scope.nuevo.esBecado){
+            if ($scope.nuevoInsc.$invalid || !$scope.nuevo.categoria){
                 $scope.showErrors=1;
                 return false;
+            }
+            
+            if($scope.nuevo.categoria == 2){
+                $scope.nuevo.categoria = $scope.nuevo.rol;
             }
             
             

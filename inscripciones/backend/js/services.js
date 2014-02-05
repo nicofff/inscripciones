@@ -44,6 +44,13 @@ inscServices.factory('Provincias', ['$resource',
         });
     }]);
 
+ inscServices.factory('Categorias', ['$resource',
+  function($resource){
+    return $resource('../json/categorias.json', {}, {
+      query: {method:'GET', isArray:true}
+    });
+  }]);
+
 inscServices.factory('EditSave', ['$resource',
     function($resource) {
         return $resource('../rest/inscriptos.php', {}, {

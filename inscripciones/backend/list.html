@@ -12,7 +12,7 @@
         <td>Pais Residencia</td>
         <td>Provincia</td>
         <td>Email</td>
-        <td>Laboratorio</td>
+        <td>Categoria</td>
         <td colspan="2">Opciones</td>
         </thead>
         <tr class="search">
@@ -27,7 +27,7 @@
             <td><input ng-model="search.PaisRes"></td>
             <td><input ng-model="search.Provincia"></td>
             <td><input ng-model="search.Email"></td>
-            <td><input ng-model="search.Laboratorio"></td>
+            <td><input ng-model="search.CategoriaShow"></td>
 
             <td colspan="2">&nbsp;</td>
         </tr>
@@ -43,7 +43,7 @@
             <td><span>{{inscripto.PaisRes}}</span></td>
             <td><span>{{inscripto.Provincia}}</span></td>
             <td><span>{{inscripto.Email}}</span></td>
-            <td><span>{{inscripto.Laboratorio}}</span></td>
+            <td><span>{{inscripto.CategoriaShow}}</span></td>
             <td colspan="2">
                 <div class="buttons" >
                     <a href="#/editar/{{inscripto.ID}}">Editar</a>

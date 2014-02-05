@@ -4,8 +4,10 @@
     {"value":3, "label": "Educador Terciario"},
     {"value":4, "label": "Asistente Social"},
     {"value":5, "label": "Psicólogo"},
-    {"value":6, "label": "Dietista"},
+    {"value":6, "label": "Kinesiólogo"},
     {"value":7, "label": "Sociólogo"},
     {"value":8, "label": "Nutricionista"},
-    {"value":9, "label": "Asistente de endoscopía"}
+    {"value":9, "label": "Asistente de endoscopía"},
+    {"value":10, "label": "Fonoaudiólogo"},
+    {"value":11, "label": "Otro"}
  ]

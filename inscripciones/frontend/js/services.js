@@ -43,6 +43,13 @@ inscServices.factory('Laboratorios', ['$resource',
     });
   }]);
   
+  inscServices.factory('Categorias', ['$resource',
+  function($resource){
+    return $resource('../json/categorias.json', {}, {
+      query: {method:'GET', isArray:true}
+    });
+  }]);
+  
 inscServices.factory('NuevoSave', ['$resource',
   function($resource){
     return $resource('save.php', {}, {

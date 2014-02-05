@@ -2,6 +2,7 @@
 <html ng-app="inscApp">
     <head>
         <title>Nueva inscripcion</title>
+        <meta charset="UTF-8"> 
         <script src="../angular/angular.min.js"></script>
         <script src="../angular/angular-route.min.js"></script>
         <script src="../angular/angular-resource.js"></script>
@@ -92,36 +93,50 @@
                 </div>
 
 
-                <span>Esta Becado: </span>
+                <span>Categoría de Inscripción:</span>
                 <div>
-                    <input type="radio" ng-model="nuevo.esBecado" value="0"/> No <br/>
-                    <input type="radio" ng-model="nuevo.esBecado" value="1"/> Si <br/>
+                    <input type="radio" ng-model="nuevo.categoria" value="0"/> No Becado <br/>
+                    <input type="radio" ng-model="nuevo.categoria" value="1"/> Becado <br/>
+                    <input type="radio" ng-model="nuevo.categoria" value="2"/> Autoridad, coordinador o panelista <br/>
                 </div>
-                <div class="error" ng-show="!nuevo.esBecado && showErrors">
+                <div class="error" ng-show="!nuevo.categoria && showErrors">
                     <small class="error">
-                        Seleccione su situacion becaria
+                        Seleccione una categoría de inscripción:
                     </small>
                 </div>
 
 
-                <div ng-show="nuevo.esBecado == 0">
-                    <p>Ud debera abonar $50 a la hora de acreditarse</p>
-                    <input type="checkbox" ng-model="becadoAcepto" ng-required="nuevo.esBecado=='0'"/> Comprendo y acepto
+                <div ng-show="nuevo.categoria == 0">
+                    <p>
+                        Usted deberá abonar un arancel: <br/>
+                        · Asistentes Argentinos: $ 600.- (pesos seiscientos)<br/>
+                        · Asistentes Extranjeros: u$s 100.- (dólares cien)<br/>
+                        Antes del evento: efectivo. Sede SAGE Marcelo T. de Alvear 1381 9no piso CABA .Tel: 4816-9396/9391<br/>
+                        Día del evento: efectivo. Acreditaciones”<br/>
+                    </p>
+                    <input type="checkbox" ng-model="becadoAcepto" ng-required="nuevo.categoria=='0'"/> Comprendo y acepto
                     <div class="error" ng-show="!becadoAcepto && showErrors">
                         <small class="error">
-                            Acepte el costo
+                            Acepte el monto a abonar
                         </small>
                     </div>
                 </div>
 
 
-                <div ng-show="nuevo.esBecado == 1">
-                    <span>Laboratorio que concede la beca</span>
+                <div ng-show="nuevo.categoria == 1">
+                    <span>Institución que concede la Beca</span>
                     <select ng-model="nuevo.laboratorio">
                         <option ng-repeat="labo in laboratorios" value="{{labo.value}}">{{labo.label}}</option>
                     </select>
                 </div>
-                <input type="submit" value="Guardar"/>
+
+                <div ng-show="nuevo.categoria == 2">
+                    <span>Seleccione uno</span>
+                    <select ng-model="nuevo.rol">
+                        <option ng-repeat="categoria in categorias" value="{{categoria.value}}">{{categoria.label}}</option>
+                    </select>
+                </div>
+                <input type="submit" value="Inscribirse"/>
             </form>
 
         </div>

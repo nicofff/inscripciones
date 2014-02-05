@@ -1,47 +1,83 @@
-        <div class="inscripcion" >
-            <form novalidate name="nuevoInsc" ng-submit="submitForm()">
-                <input type='text' style="display:none" ng-model='inscripto.ID'/>
-                <span>Apellido: </span><input type="text" ng-model="inscripto.apellido" required/><br/>
-                <span>Nombre: </span><input type="text" ng-model="inscripto.nombre" required/><br/>
-                <span>Email: </span><input type="email" ng-model="inscripto.email" required/><br/>
-                <span>Tipo de Documento: </span>
-                <select ng-model="inscripto.tipoDoc">
-                    <option ng-repeat="tipoDoc in tiposDoc" value="{{tipoDoc.value}}">{{tipoDoc.label}}</option>
-                </select>
-                <span>Numero Documento: </span><input type="text" ng-model="inscripto.numeroDoc" ng-pattern="/[0-9]{7,9}/"/><br/>
-                <span>Pais de Nacimiento:</span>
-                <select ng-model="inscripto.paisNac">
-                    <option ng-repeat="pais in paisesNac" value="{{pais.value}}">{{pais.label}}</option>
-                </select>
+<div class="inscripcion" >
+    <form novalidate name="nuevoInsc" ng-submit="submitForm()">
+        <input type='text' style="display:none" ng-model='inscripto.ID'/>
+        <span>Apellido: </span><input type="text" ng-model="inscripto.apellido" required/><br/>
+        <span>Nombre: </span><input type="text" ng-model="inscripto.nombre" required/><br/>
+        <span>Email: </span><input type="email" ng-model="inscripto.email" required/><br/>
+        <span>Tipo de Documento: </span>
+        <select ng-model="inscripto.tipoDoc">
+            <option ng-repeat="tipoDoc in tiposDoc" value="{{tipoDoc.value}}">{{tipoDoc.label}}</option>
+        </select>
+        <span>Numero Documento: </span><input type="text" ng-model="inscripto.numeroDoc" ng-pattern="/[0-9]{7,9}/"/><br/>
+        <span>Pais de Nacimiento:</span>
+        <select ng-model="inscripto.paisNac">
+            <option ng-repeat="pais in paisesNac" value="{{pais.value}}">{{pais.label}}</option>
+        </select>
 
-                <span>Profesion: </span>
-                <select ng-model="inscripto.profesion">
-                    <option ng-repeat="prefesion in profesiones" value="{{prefesion.value}}">{{prefesion.label}}</option>
-                </select>
-                <span>Especialidad: </span><input type="text" ng-model="inscripto.especialidad" required/><br/>
-                <span>Pais de Residencia:</span>
-                <select ng-model="inscripto.paisRes" ng-change="checkPais()">
-                    <option ng-repeat="pais in paisesRes" value="{{pais.value}}">{{pais.label}}</option>
-                </select>
-                <div ng-show="inscripto.paisRes == '1'">
-                    <span>Provincia: </span>
-                    <select ng-model="inscripto.provincia">
-                        <option ng-repeat="provincia in provincias" value="{{provincia.value}}">{{provincia.label}}</option>
-                    </select>
-                </div>
-                <div ng-hide="inscripto.paisRes == '1'">
-                    <span>Provincia: </span><input type="text" ng-model="inscripto.provincia" required/><br/>
-                </div>
-                <span>Esta Becado: </span><br/>
-                <input type="radio" ng-model="inscripto.esBecado" value="0"/> No <br/>
-                <input type="radio" ng-model="inscripto.esBecado" value="1"/> Si <br/>
-                <div ng-show="inscripto.esBecado==1">
-                    <span>Laboratorio que concede la beca</span>
-                    <select ng-model="inscripto.laboratorio">
-                        <option ng-repeat="labo in laboratorios" value="{{labo.value}}">{{labo.label}}</option>
-                    </select>
-                </div>
-                <input ng-disabled="nuevoInsc.$invalid" type="submit" value="Guardar"/>
-            </form>
-
+        <span>Profesion: </span>
+        <select ng-model="inscripto.profesion">
+            <option ng-repeat="prefesion in profesiones" value="{{prefesion.value}}">{{prefesion.label}}</option>
+        </select>
+        <span>Especialidad: </span><input type="text" ng-model="inscripto.especialidad" required/><br/>
+        <span>Pais de Residencia:</span>
+        <select ng-model="inscripto.paisRes" ng-change="checkPais()">
+            <option ng-repeat="pais in paisesRes" value="{{pais.value}}">{{pais.label}}</option>
+        </select>
+        <div ng-show="inscripto.paisRes == '1'">
+            <span>Provincia: </span>
+            <select ng-model="inscripto.provincia">
+                <option ng-repeat="provincia in provincias" value="{{provincia.value}}">{{provincia.label}}</option>
+            </select>
         </div>
+        <div ng-hide="inscripto.paisRes == '1'">
+            <span>Provincia: </span><input type="text" ng-model="inscripto.provincia" required/><br/>
+        </div>
+
+
+        <span>Categoría de Inscripción:</span>
+        <div>
+            <input type="radio" ng-model="inscripto.categoria" value="0"/> No Becado <br/>
+            <input type="radio" ng-model="inscripto.categoria" value="1"/> Becado <br/>
+            <input type="radio" ng-model="inscripto.categoria" value="2"/> Autoridad, coordinador o panelista <br/>
+        </div>
+        <div class="error" ng-show="!inscripto.categoria && showErrors">
+            <small class="error">
+                Seleccione una categoría de inscripción:
+            </small>
+        </div>
+
+
+        <div ng-show="inscripto.categoria == 0">
+            <p>
+                Usted deberá abonar un arancel: <br/>
+                · Asistentes Argentinos: $ 600.- (pesos seiscientos)<br/>
+                · Asistentes Extranjeros: u$s 100.- (dólares cien)<br/>
+                Antes del evento: efectivo. Sede SAGE Marcelo T. de Alvear 1381 9no piso CABA .Tel: 4816-9396/9391<br/>
+                Día del evento: efectivo. Acreditaciones”<br/>
+            </p>
+            <input type="checkbox" ng-model="becadoAcepto" ng-required="inscripto.categoria=='0'"/> Comprendo y acepto
+            <div class="error" ng-show="!becadoAcepto && showErrors">
+                <small class="error">
+                    Acepte el monto a abonar
+                </small>
+            </div>
+        </div>
+
+
+        <div ng-show="inscripto.categoria == 1">
+            <span>Institución que concede la Beca</span>
+            <select ng-model="inscripto.laboratorio">
+                <option ng-repeat="labo in laboratorios" value="{{labo.value}}">{{labo.label}}</option>
+            </select>
+        </div>
+
+        <div ng-show="inscripto.categoria == 2">
+            <span>Seleccione uno</span>
+            <select ng-model="inscripto.rol">
+                <option ng-repeat="categoria in categorias" value="{{categoria.value}}">{{categoria.label}}</option>
+            </select>
+        </div>
+        <input ng-disabled="nuevoInsc.$invalid" type="submit" value="Guardar"/>
+    </form>
+
+</div>
