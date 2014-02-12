@@ -186,15 +186,15 @@ class Inscripto {
         $joinedThis= $this->getJoined($this->codigoInscripcion);
         $redirectURL = $this->getRedirectURL();
         $header = '<img src="http://www.simposiocidemo2014.com.ar/wp-content/themes/enfold/inscripciones-master/inscripciones-master/frontend/img/header-mail.jpg" /> <br/> ';
-        $content = '<h2>Ud se ha subscripto correctamente</h2><br/>';
+        $content = '<h2>Ud se ha inscripto correctamente</h2><br/>';
         $content .= '<strong>Codigo de Registro:</strong><span>' . $this->codigoInscripcion . '</span><br/>';
         $content .= '<strong>Nombre:</strong><span>' . $this->nombre . '</span><br/>';
         $content .= '<strong>Apellido:</strong><span>' . $this->apellido . '</span><br/>';
 
         if ($this->esBecado()) {
-            $content .= '<strong>Categoria de Inscripcion:</strong><span>' . $this->getCategoria() . ' por ' . $joinedThis->Laboratorio . '</span><br/>';
+            $content .= '<strong>Categoria de Inscripción:</strong><span>' . $this->getCategoria() . ' por ' . $joinedThis->Laboratorio . '</span><br/>';
         } else {
-            $content .= '<strong>Categoria de Inscripcion:</strong><span>' . $this->getCategoria() . '</span><br/>';
+            $content .= '<strong>Categoria de Inscripción:</strong><span>' . $this->getCategoria() . '</span><br/>';
         }
 
         if ($this->esBecado()) {
@@ -208,7 +208,7 @@ class Inscripto {
         }
 
 
-        $footer .= 'Para imprimir los datos de su subscripcion haga click <a href="' . $redirectURL . '?email=' . $this->email . '"> aquí.</a>';
+        $footer .= 'Para imprimir los datos de su inscripción haga click <a href="' . $redirectURL . '?email=' . $this->email . '"> aquí.</a>';
 
         $emailContent = $header . $content . $footer;
         return mb_convert_encoding($emailContent, 'Windows-1252', "UTF-8");

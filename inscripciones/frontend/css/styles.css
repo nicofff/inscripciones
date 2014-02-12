@@ -93,6 +93,14 @@ cursor: pointer;
 	background: #fff url("../img/header-registrado.jpg") top left no-repeat;
 }
 
+.no-registrado{
+	width: 300px;
+	display: block;
+	margin: 0px auto 20px;
+	padding: 230px 100px 50px 100px;
+        background: #fff;
+}
+
 .reimprimir{
 	width: 300px;
 	display: block;
@@ -101,7 +109,7 @@ cursor: pointer;
 	background: #fff url("../img/header-reimprimir.jpg") top left no-repeat;
 }
 
-.registrado h1{
+.registrado h1, .no-registrado h1{
 font-size: 16px;
 text-align: center;
 font-weight: bold;

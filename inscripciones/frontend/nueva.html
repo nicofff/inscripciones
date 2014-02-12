@@ -126,8 +126,14 @@
                 <div ng-show="nuevo.categoria == 1">
                     <span>Institución que concede la Beca</span>
                     <select ng-model="nuevo.laboratorio">
+                        <option value="0">Seleccione Una</option>
                         <option ng-repeat="labo in laboratorios" value="{{labo.value}}">{{labo.label}}</option>
                     </select>
+                    <div class="error" ng-show="nuevo.laboratorio==0 && showErrors">
+                        <small class="error">
+                            Seleccione la institucion que le concede la Beca
+                        </small>
+                    </div>
                 </div>
 
                 <div ng-show="nuevo.categoria == 2">

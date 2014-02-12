@@ -17,7 +17,7 @@ inscControllers.controller('nuevoCtrl', ['$scope','$window', 'Paises', 'Profesio
         $scope.nuevo.profesion = 1;
         $scope.nuevo.paisRes = 1;
         $scope.nuevo.provincia = 1;
-        $scope.nuevo.laboratorio = 1;
+        $scope.nuevo.laboratorio = 0;
         $scope.nuevo.rol = 3;
         
         $scope.checkPais = function (){
@@ -30,6 +30,11 @@ inscControllers.controller('nuevoCtrl', ['$scope','$window', 'Paises', 'Profesio
         
         $scope.submitForm = function (){
             if ($scope.nuevoInsc.$invalid || !$scope.nuevo.categoria){
+                $scope.showErrors=1;
+                return false;
+            }
+            
+            if($scope.nuevo.laboratorio == 0){
                 $scope.showErrors=1;
                 return false;
             }
