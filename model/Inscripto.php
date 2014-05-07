@@ -183,7 +183,7 @@ class Inscripto {
     }
 
     public static function getRedirectURL() {
-        return "http://$_SERVER[HTTP_HOST]/inscripciones/frontend/UsuarioRegistrado.php";
+        return "http://$_SERVER[HTTP_HOST]/frontend/UsuarioRegistrado.php";
     }
 
     private function esNoBecado() {
