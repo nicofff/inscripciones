@@ -10,5 +10,8 @@
     {"value":9, "label": "Sidus"},
     {"value":10, "label": "Ivax"},
     {"value":11, "label": "CIDEMO"},
-    {"value":12, "label": "Corpomédica"}
+    {"value":12, "label": "Corpomédica"},
+    {"value":13, "label": "Gastrotex"},
+    {"value":14, "label": "Abbott"},
+    {"value":15, "label": "Rossmor"}
 ]

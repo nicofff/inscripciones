@@ -6,8 +6,10 @@ inscControllers.controller('adminCtrl', ['$scope','$filter', 'Inscriptos','ToCSV
         $scope.inscriptos = Inscriptos.query({},function (InscriptosArray){
             for (i=0;i<InscriptosArray.length;i++){
                 if (InscriptosArray[i].PaisRes=="Argentina"){
-                    provincias = $filter('filter')($scope.provincias, {value:InscriptosArray[i].Provincia});
-                    InscriptosArray[i].Provincia=provincias[0].label;
+                    var provincias = $filter('filter')($scope.provincias, {value:InscriptosArray[i].Provincia});
+                    if (provincias.length !=0){
+                        InscriptosArray[i].Provincia=provincias[0].label;
+                    }
                 }
                 if (InscriptosArray[i].Categoria == "Becado"){
                     InscriptosArray[i].CategoriaShow = "Becado por " + InscriptosArray[i].Laboratorio;

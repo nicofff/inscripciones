@@ -19,6 +19,5 @@ if ($inscripto->estaRegistrado()){
 
 
 $inscripto->save();
-$inscripto->sendConfirmationEmail();
 echo json_encode(array("success"=> true, "redirect" => "$redirectURL?email=".$inscripto->email));
 return;

@@ -34,7 +34,7 @@ inscControllers.controller('nuevoCtrl', ['$scope','$window', 'Paises', 'Profesio
                 return false;
             }
             
-            if($scope.nuevo.laboratorio == 0){
+            if($scope.nuevo.categoria == 1 && $scope.nuevo.laboratorio == 0){
                 $scope.showErrors=1;
                 return false;
             }
