@@ -1,7 +1,7 @@
 <?php
 
 $DB_USER= "root";
-$DB_PASS = "";
+$DB_PASS = "InfraYVirt";
 $DB_NAME =  "inscripciones";
 $DB_SERVER= "localhost";
 
