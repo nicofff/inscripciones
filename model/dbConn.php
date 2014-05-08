@@ -3,7 +3,11 @@
 $DB_USER= "root";
 $DB_PASS = "InfraYVirt";
 $DB_NAME =  "inscripciones";
-$DB_SERVER= "localhost";
+$DB_PRIMARY_SERVER= "db";
+$DB_SECONDARY_SERVER= "web";
 
-$MYSQLI = new mysqli($DB_SERVER,$DB_USER,$DB_PASS,$DB_NAME);
+$MYSQLI = new mysqli($DB_PRIMARY_SERVER,$DB_USER,$DB_PASS,$DB_NAME);
+if (!$DB){
+    $MYSQLI = new mysqli($DB_SECONDARY_SERVER,$DB_USER,$DB_PASS,$DB_NAME);    
+}
 $MYSQLI->set_charset("utf8");
